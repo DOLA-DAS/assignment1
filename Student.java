@@ -14,6 +14,11 @@ import java.io.*;
 public class Student{
 	static Scanner scan = new Scanner(System.in);  //input data from user through scanner class
     int Id;
+    double sumOfCredits;
+    double multiplication[][][];
+    double result;
+    double sum;
+    double cg;
     String Name;
     String Department;
     String University;
@@ -29,12 +34,18 @@ public class Student{
      */
     public Student(){
         Id=0;//default initialization
+        sumOfCredits=0.0;
+        multiplication=new double [4][2][12];
+        result=0.0;
+        sum=0.0;
+        cg=0.0;
     	Name=null;//default initialization
     	Department=null;//default initialization
     	University=null;//default initialization
     	GPA=new double[4][2];//default initialization
     	CGPA=0.0;//default initialization
     	gpa=0.0;//default initialization
+    	subjects=new String[10];
     	credits=new double[4][2][12];//default initialization
     	grades=new double[4][2][12];//default initialization
 
@@ -45,7 +56,7 @@ public class Student{
 
     public void studentDetailsById(int id){
         Id=id;
-    	//System.out.println("ID:"+Id);//show id
+    	System.out.println("ID:"+Id);//show id
     	System.out.println("Name:"+Name);//show name
     	System.out.println("University:"+University);//show university
     	System.out.println("Depertment:"+Department);//show department
@@ -74,6 +85,31 @@ public class Student{
 
     }
 
+   public double computeGPAById(int id)
+   {
+       Id=id;
+       for(int i=0;i<4;i++)
+       {
+           for(int j=0;j<2;j++)
+           {
+               for(int k=0;k<10;k++)
+               {
+           System.out.print("Enter credits and grades of" + (i+1) + "th year and " + (j+1) + "th semister and " + (k+1) + "th subjects : ");
+           scan.nextDouble(credits[i][j][k]);
+           scan.nextDouble(grades[i][j+1][k]);
+           sumOfCredits+=credits;
+           multiplication=credits*grades;
+   }
+   result=(multiplication/sumOfCredits);
+System.out.println("GPA of "+ (i+1) + "th year and " + (j+1) + "th semister" + result);
+}
+}
+sum+=result;
+cg=sum/8;
+System.out.println("CGPA BY ID :" + cg);
+}
+
+
     /**
      * Define a method to compute the CGPA from the Given term GPA for a particular student.
      * se as many arguments as required.
@@ -81,7 +117,8 @@ public class Student{
     public void computeCGPAByID(int id){
         Id=id;
         double CGPA;
-        CGPA=gpa/8;//calculating CGPA
+        CGPA=gpa/8;
+        //calculating CGPA
     	System.out.println(CGPA);
     }
     /**
@@ -101,7 +138,7 @@ public class Student{
             student[i].updateStudentById(Id);//input student details
             student[i].studentDetailsById(Id);//showing details
             student[i].computeCGPAByID(Id);//computing CGPA and showing results
-
+            student[i].computeGPAById(Id);//computing gpa by id
             }
 		}
     }
