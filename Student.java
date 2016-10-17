@@ -43,8 +43,9 @@ public class Student{
      * Define a method to print the students details.
      */
 
-    public void studentDetailsById(){
-    	System.out.println("ID:"+Id);//show id
+    public void studentDetailsById(int id){
+        Id=id;
+    	//System.out.println("ID:"+Id);//show id
     	System.out.println("Name:"+Name);//show name
     	System.out.println("University:"+University);//show university
     	System.out.println("Depertment:"+Department);//show department
@@ -77,7 +78,8 @@ public class Student{
      * Define a method to compute the CGPA from the Given term GPA for a particular student.
      * se as many arguments as required.
      */
-    public void computeCGPAByID(){
+    public void computeCGPAByID(int id){
+        Id=id;
         double CGPA;
         CGPA=gpa/8;//calculating CGPA
     	System.out.println(CGPA);
@@ -97,8 +99,8 @@ public class Student{
     		Id =scan.nextInt();
     		student[i] = new Student(); //Allocate memory space for nth students
             student[i].updateStudentById(Id);//input student details
-            student[i].studentDetailsById();//showing details
-            student[i].computeCGPAByID();//computing CGPA and showing results
+            student[i].studentDetailsById(Id);//showing details
+            student[i].computeCGPAByID(Id);//computing CGPA and showing results
 
             }
 		}
